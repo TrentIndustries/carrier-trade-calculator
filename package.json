@@ -1,0 +1,31 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.6",
+    "@mui/material": "^6.4.6",
+    "@preact/signals": "^2.0.1",
+		"preact": "^10.25.3"
+	},
+	"devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+		"@preact/preset-vite": "^2.9.3",
+		"eslint": "^9.22.0",
+		"eslint-config-preact": "^1.5.0",
+		"typescript": "^5.8.2",
+		"vite": "^6.0.4"
+	},
+	"eslintConfig": {
+		"extends": "preact"
+	},
+	"packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
+}

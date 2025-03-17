@@ -13,10 +13,12 @@ import Grid from '@mui/material/Grid2';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { InputAdornment, OutlinedInput } from '@mui/material';
 
 import LoadTab from './components/LoadTab';
 import UnloadTab from './components/UnloadTab';
+
+import { cargoCapacity, loadBuyPrice, loadSellPrice } from './lib/state';
 
 const darkTheme = createTheme({
   palette: {
@@ -36,6 +38,11 @@ const darkTheme = createTheme({
 
 export function App() {
   const [activeTab, setActiveTab] = useState(0);
+
+  const formatter = new Intl.NumberFormat("en-US");
+
+  const profitPerTon = formatter.format(loadSellPrice.value - loadBuyPrice.value);
+  const profitPerTrip = formatter.format((loadSellPrice.value - loadBuyPrice.value) * cargoCapacity.value);
 
   const handleTabChange = (_ev: Event, index: number) => {
     setActiveTab(index);
@@ -67,8 +74,38 @@ export function App() {
               <CardHeader title="Results" />
               <CardContent>
                 <Grid container spacing={2}>
-                  <TextField fullWidth label="Profit per ton" />
-                  <TextField fullWidth label="Profit per trip" />
+                  <TextField
+                    fullWidth
+                    label="Profit per ton"
+                    value={profitPerTon}
+                    slotProps={{
+                      input: {
+                        readOnly: true,
+                        endAdornment: <InputAdornment position='end'>Cr</InputAdornment>
+                      },
+                      htmlInput: {
+                        style: { textAlign: "right"},
+                      }
+                    }
+
+                    }
+                  />
+                  <TextField
+                    fullWidth
+                    label="Profit per trip"
+                    value={profitPerTrip}
+                    slotProps={{
+                      input: {
+                        readOnly: true,
+                        endAdornment: <InputAdornment position='end'>Cr</InputAdornment>
+                      },
+                      htmlInput: {
+                        style: { textAlign: "right"},
+                      }
+                    }
+
+                    }
+                  />
                   <TextField fullWidth label="Total profit" />
                 </Grid>
               </CardContent>

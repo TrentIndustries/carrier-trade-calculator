@@ -13,12 +13,12 @@ import Grid from '@mui/material/Grid2';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
-import { InputAdornment, OutlinedInput } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
 
-import LoadTab from './components/LoadTab';
-import UnloadTab from './components/UnloadTab';
+import CargoSettings from './components/CargoSettings';
+import OperationTab from './components/OperationTab';
 
-import { cargoCapacity, loadBuyPrice, loadSellPrice } from './lib/state';
+import { cargoCapacity, buyPrice, sellPrice, totalAvailableCargo, OperationType } from './lib/state';
 
 const darkTheme = createTheme({
   palette: {
@@ -41,8 +41,10 @@ export function App() {
 
   const formatter = new Intl.NumberFormat("en-US");
 
-  const profitPerTon = formatter.format(loadSellPrice.value - loadBuyPrice.value);
-  const profitPerTrip = formatter.format((loadSellPrice.value - loadBuyPrice.value) * cargoCapacity.value);
+  const profitPerTon = sellPrice.value - buyPrice.value;
+  const profitPerTonFormatted = formatter.format(profitPerTon);
+  const profitPerTrip = formatter.format(profitPerTon * cargoCapacity.value);
+  const totalProfit = formatter.format(profitPerTon * totalAvailableCargo.value);
 
   const handleTabChange = (_ev: Event, index: number) => {
     setActiveTab(index);
@@ -56,7 +58,7 @@ export function App() {
           <Grid size={{ xs: 12, md: 8 }}>
             <Card>
               <CardContent>
-                <TextField label="Cargo capacity" />
+                <CargoSettings />
                 <Box sx={{ borderBottom: 2, borderColor: 'divider', marginY: 2 }}>
                   <Tabs value={activeTab} onChange={handleTabChange}>
                     <Tab label="Loading" />
@@ -64,8 +66,8 @@ export function App() {
                   </Tabs>
                 </Box>
 
-                <LoadTab active={activeTab == 0} />
-                <UnloadTab active={activeTab == 1} />
+                <OperationTab active={activeTab == 0} type={OperationType.Load} />
+                <OperationTab active={activeTab == 1} type={OperationType.Unload} />
               </CardContent>
             </Card>
           </Grid>
@@ -77,7 +79,7 @@ export function App() {
                   <TextField
                     fullWidth
                     label="Profit per ton"
-                    value={profitPerTon}
+                    value={profitPerTonFormatted}
                     slotProps={{
                       input: {
                         readOnly: true,
@@ -86,9 +88,7 @@ export function App() {
                       htmlInput: {
                         style: { textAlign: "right"},
                       }
-                    }
-
-                    }
+                    }}
                   />
                   <TextField
                     fullWidth
@@ -106,7 +106,22 @@ export function App() {
 
                     }
                   />
-                  <TextField fullWidth label="Total profit" />
+                  <TextField
+                    fullWidth
+                    label="Total profit"
+                    value={totalProfit}
+                    slotProps={{
+                      input: {
+                        readOnly: true,
+                        endAdornment: <InputAdornment position='end'>Cr</InputAdornment>
+                      },
+                      htmlInput: {
+                        style: { textAlign: "right"},
+                      }
+                    }
+
+                    }
+                  />
                 </Grid>
               </CardContent>
             </Card>

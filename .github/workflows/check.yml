@@ -26,7 +26,7 @@ jobs:
         run: corepack enable
 
       - name: Install Node.js dependencies
-        run: pnpm ci
+        run: pnpm i
 
       - name: Run prettier
         run: pnpm exec prettier --check src/ 
@@ -46,7 +46,7 @@ jobs:
         run: corepack enable
 
       - name: Install Node.js dependencies
-        run: pnpm ci
+        run: pnpm i
 
       - name: Run eslint
         run: pnpm exec eslint src/

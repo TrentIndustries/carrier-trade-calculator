@@ -1,19 +1,19 @@
-import Grid from '@mui/material/Grid2';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import Grid from "@mui/material/Grid2";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 
-import { cargoCapacity, totalAvailableCargo } from '../lib/state';
+import { cargoCapacity, totalAvailableCargo } from "../lib/state";
 
 const CargoSettings = () => {
   const handleCargoCapacityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const ele = event.target as HTMLInputElement;
-    cargoCapacity.value = parseInt(ele.value);
+    cargoCapacity.value = parseInt(ele.value, 10);
   };
 
   const handleTotalCargoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const ele = event.target as HTMLInputElement;
-    totalAvailableCargo.value = parseInt(ele.value);
-  }
+    totalAvailableCargo.value = parseInt(ele.value, 10);
+  };
 
   return (
     <Grid container spacing={2} columns={{ sm: 1, md: 2 }}>
@@ -27,11 +27,11 @@ const CargoSettings = () => {
           onChange={handleCargoCapacityChange}
           slotProps={{
             input: {
-              endAdornment: <InputAdornment position='end'>tons</InputAdornment>
+              endAdornment: <InputAdornment position="end">tons</InputAdornment>,
             },
             htmlInput: {
-              style: { textAlign: "right"},
-            }
+              style: { textAlign: "right" },
+            },
           }}
         />
       </Grid>
@@ -45,11 +45,11 @@ const CargoSettings = () => {
           onChange={handleTotalCargoChange}
           slotProps={{
             input: {
-              endAdornment: <InputAdornment position='end'>tons</InputAdornment>
+              endAdornment: <InputAdornment position="end">tons</InputAdornment>,
             },
             htmlInput: {
-              style: { textAlign: "right"},
-            }
+              style: { textAlign: "right" },
+            },
           }}
         />
       </Grid>

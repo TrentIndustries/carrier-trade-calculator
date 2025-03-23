@@ -10,7 +10,15 @@ interface LoadTabProps {
   type: OperationType;
 }
 
-const labels: { [key in OperationType]: { tabTitle: string, buyLabel: string, buyHelperText: string, sellLabel: string, sellHelperText: string } } = {
+const labels: {
+  [key in OperationType]: {
+    tabTitle: string;
+    buyLabel: string;
+    buyHelperText: string;
+    sellLabel: string;
+    sellHelperText: string;
+  };
+} = {
   [OperationType.Load]: {
     tabTitle: "Loading",
     buyLabel: "Station buy price",
@@ -24,11 +32,10 @@ const labels: { [key in OperationType]: { tabTitle: string, buyLabel: string, bu
     buyHelperText: "The price you pay when buying the commodity",
     sellLabel: "Station sell price",
     sellHelperText: "The price for which you sell the commodity",
-  }
+  },
 };
 
 const operationTab = (props: LoadTabProps) => {
-
   const handleBuyPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const ele = event.target as HTMLInputElement;
     buyPrice.value = parseFloat(ele.value);
@@ -43,7 +50,7 @@ const operationTab = (props: LoadTabProps) => {
     <div hidden={!props.active}>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant='h4'>{labels[props.type].tabTitle}</Typography>
+          <Typography variant="h4">{labels[props.type].tabTitle}</Typography>
         </Grid>
         <Grid size={6}>
           <TextField
@@ -55,11 +62,11 @@ const operationTab = (props: LoadTabProps) => {
             onChange={handleBuyPriceChange}
             slotProps={{
               input: {
-                endAdornment: <InputAdornment position='end'>Cr</InputAdornment>
+                endAdornment: <InputAdornment position="end">Cr</InputAdornment>,
               },
               htmlInput: {
-                style: { textAlign: "right"},
-              }
+                style: { textAlign: "right" },
+              },
             }}
           />
         </Grid>
@@ -73,11 +80,11 @@ const operationTab = (props: LoadTabProps) => {
             onChange={handleSellPriceChange}
             slotProps={{
               input: {
-                endAdornment: <InputAdornment position='end'>Cr</InputAdornment>
+                endAdornment: <InputAdornment position="end">Cr</InputAdornment>,
               },
               htmlInput: {
-                style: { textAlign: "right"},
-              }
+                style: { textAlign: "right" },
+              },
             }}
           />
         </Grid>
@@ -87,4 +94,3 @@ const operationTab = (props: LoadTabProps) => {
 };
 
 export default operationTab;
-

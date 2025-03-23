@@ -10,7 +10,7 @@ interface LoadTabProps {
   type: OperationType;
 }
 
-const labels: {
+interface OperationLabels {
   [key in OperationType]: {
     tabTitle: string;
     buyLabel: string;
@@ -18,7 +18,9 @@ const labels: {
     sellLabel: string;
     sellHelperText: string;
   };
-} = {
+}
+
+const labels: OperationLabels = {
   [OperationType.Load]: {
     tabTitle: "Loading",
     buyLabel: "Station buy price",

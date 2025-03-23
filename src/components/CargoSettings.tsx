@@ -16,7 +16,7 @@ const CargoSettings = () => {
   };
 
   return (
-    <Grid container spacing={2} columns={{ sm: 1, md: 2 }}>
+    <Grid container spacing={2} columns={{ xs: 1, md: 2 }}>
       <Grid size={1}>
         <TextField
           label="Cargo capacity"

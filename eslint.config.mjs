@@ -85,10 +85,6 @@ export default [
 		'no-this-before-super': 2,
 		'no-undef-init': 2,
 		'no-unneeded-ternary': 2,
-		'no-unused-vars': [2, {
-			args: 'after-used',
-			ignoreRestSiblings: true
-		}],
 		'no-useless-call': 1,
 		'no-useless-computed-key': 1,
 		'no-useless-concat': 1,

@@ -17,14 +17,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           cache: pnpm
           node-version: 23
-
-      - name: Enable PNPM
-        run: corepack enable
 
       - name: Install Node.js dependencies
         run: pnpm i
@@ -38,14 +38,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           cache: pnpm
           node-version: 23
-
-      - name: Enable PNPM
-        run: corepack enable
 
       - name: Install Node.js dependencies
         run: pnpm i
